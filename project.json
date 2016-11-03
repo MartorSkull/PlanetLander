@@ -1,0 +1,39 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : true,
+    "frameRate" : 60,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d","chipmunk"],
+
+    "jsList" : [
+        "src/resource.js",
+        "src/global.js",
+        
+        "src/Layers/BackgroundLay.js",
+        "src/Layers/CineLay.js",
+        "src/Layers/EnemyLay.js",
+        "src/Layers/MapLay.js",
+        "src/Layers/MenuLay.js",
+        "src/Layers/PlayerLay.js",
+        "src/Layers/GameOverLay.js",
+        
+        "src/Nodes/Enemy.js",
+        "src/Nodes/MapCube.js",
+        "src/Nodes/Missil.js",
+        "src/Nodes/Player.js",
+        "src/Nodes/BlockSpawner.js",
+        "src/Nodes/win.js",
+        
+        "src/Scenes/Cinematic1.js",
+        "src/Scenes/Level1.js",
+        "src/Scenes/Menu.js",
+        "src/Scenes/Level2.js",
+        "src/Scenes/GameOver.js"
+    ]
+}
