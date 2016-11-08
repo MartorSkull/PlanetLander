@@ -5,7 +5,9 @@ var Block = cc.PhysicsSprite.extend({
         
         this._super(img);
         this.scheduleUpdate();
-        this.father=father;
+        this.father = father;
+        this.ran = (Math.random()*14)-6;
+
         
         this.space = space;
         var contentSize = this.getContentSize()
@@ -33,6 +35,7 @@ var Block = cc.PhysicsSprite.extend({
         this.shape.setCollisionType(ColType.block);
     },
     update:function(dt){
+        this.setRotation(this.rotation+this.ran);
         if (this.x<-75){
             this.remove();
         };

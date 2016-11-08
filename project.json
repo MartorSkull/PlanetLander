@@ -27,7 +27,6 @@
         "src/Nodes/MapCube.js",
         "src/Nodes/Missil.js",
         "src/Nodes/Player.js",
-        "src/Nodes/BlockSpawner.js",
         "src/Nodes/win.js",
         
         "src/Scenes/Cinematic1.js",

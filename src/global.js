@@ -1,5 +1,5 @@
 //debug
-var hardwin=true;
+var hardwin=false;
 var debug=false;
 var winOn = true;
 
