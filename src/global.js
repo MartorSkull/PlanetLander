@@ -1,6 +1,6 @@
 //debug
-var hardwin=false;
-var debug=false;
+var hardwin=true;
+var debug=true;
 var winOn = true;
 
 //game Var

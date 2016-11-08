@@ -22,7 +22,7 @@ var Player = cc.PhysicsSprite.extend({
         this.shape = new cp.BoxShape(this.body, contentSize.width-112, contentSize.height-142);
         this.shape.setCollisionType(ColType.player);
         this.shape1 = new cp.BoxShape(this.body, contentSize.width-165, contentSize.height-109);
-        this.shape.setCollisionType();
+        this.shape1.setCollisionType(ColType.player);
         this.space.addShape(this.shape);
         this.space.addShape(this.shape1);
         this.scheduleUpdate();
