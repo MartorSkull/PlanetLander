@@ -1,8 +1,9 @@
 var PlayerL = cc.Layer.extend({
     ctor:function (space) {
+        //////////////////////////////
         timecalc=function(distance){
             var maxdistance = size.height;
-            var maxtime = 2;
+            var maxtime = 1.5;
             var newtime = (distance*maxtime) / maxdistance
             return newtime;
         };
@@ -53,7 +54,7 @@ var PlayerL = cc.Layer.extend({
                     if(target.getNumberOfRunningActions() != 0){
                         target.stopActionByTag("down");
                     }
-                    var action_down = cc.moveTo(2-(timecalc(size.height-target.y)), bot);
+                    var action_down = cc.moveTo(1.5-(timecalc(size.height-target.y)), bot);
                     action_down.setTag("up");
                     if(!ended){
                         target.runAction(action_down);
