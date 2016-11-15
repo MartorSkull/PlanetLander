@@ -1,6 +1,6 @@
 //debug
 var hardwin=true;
-var debug=false;
+var debug=true;
 var winOn = true;
 
 //game Var
@@ -12,3 +12,5 @@ var ColType = [];
 ColType.player=0;
 ColType.block=1;
 ColType.missil=2;
+ColType.enemy=3;
+ColType.missilE=4;

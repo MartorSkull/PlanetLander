@@ -25,11 +25,11 @@ var Map = cc.Layer.extend({
         if(this.count>=exp){
             var x = Math.floor(Math.random()*2);
             if (x==0){
-                var nBlock = new Block(this.space, this, cc.p(1280, this.array[this.aux]));
+                var nBlock = new Block(this.space, cc.p(1280, this.array[this.aux]));
                 this.addChild(nBlock);
                 this.aux+=1;
             }else{
-                var nBlock1 = new Block(this.space, this, cc.p(1280, this.array[this.aux1]));
+                var nBlock1 = new Block(this.space, cc.p(1280, this.array[this.aux1]));
                 this.addChild(nBlock1);
                 this.aux1-=1;
             }

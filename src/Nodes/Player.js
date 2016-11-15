@@ -37,7 +37,7 @@ var Player = cc.PhysicsSprite.extend({
         if (this.hasMis){
             this.time=0;
             this.hasMis=false;
-            var aux = new Missil(this.space, cc.p(this.x, this.y), this.father);
+            var aux = new Missil(this.space, cc.p(this.x, this.y), this.father, "+");
             this.father.addChild(aux);
         }
     }

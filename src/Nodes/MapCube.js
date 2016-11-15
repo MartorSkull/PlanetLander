@@ -1,16 +1,16 @@
 var Block = cc.PhysicsSprite.extend({
-    ctor:function(space, father, pos){
+    ctor:function(space, pos){
         var imgs = [res.basu1, res.basu2, res.basu3];
         var img = imgs[Math.floor(Math.random()*2)];
         
         this._super(img);
         this.scheduleUpdate();
-        this.father = father;
+
         this.ran = (Math.random()*14)-6;
 
         
         this.space = space;
-        var contentSize = this.getContentSize()
+        var contentSize = this.getContentSize();
         
         this.body = new cp.Body(Infinity, cp.momentForBox(1, contentSize.width, contentSize.height));
         this.space.addBody(this.body);
@@ -45,7 +45,6 @@ var Block = cc.PhysicsSprite.extend({
         this.space.removeShape(this.shape);
         this.space.removeBody(this.body);
         this.release();
-        this.father.removeChild(this);
         this.unscheduleUpdate();
     }
 });

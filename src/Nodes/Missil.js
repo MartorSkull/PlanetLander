@@ -1,9 +1,10 @@
 var Missil = cc.PhysicsSprite.extend({
-    ctor: function (space, pos, father) {
+    ctor: function (space, pos, father, bool) {
         this._super(res.Missil);
         
         this.space = space;
         this.father=father;
+        this.bool = bool;
         
         var contentSize = this.getContentSize();
         
@@ -12,7 +13,7 @@ var Missil = cc.PhysicsSprite.extend({
         
         this.setBody(this.body);
         this.attr({
-            rotation : 90,
+            rotation : (this.bool+90),
             x:pos.x+58,
             y:pos.y
         });
@@ -20,15 +21,22 @@ var Missil = cc.PhysicsSprite.extend({
         this.shape = new cp.BoxShape(this.body, contentSize.width-33, contentSize.height-80);
         this.space.addShape(this.shape);
         
-        this.shape.setCollisionType(ColType.missil);
+        if ("+"==this.bool){
+            this.shape.setCollisionType(ColType.missil);
+            cc.log("1");
+        }else{
+            this.shape.setCollisionType(ColType.missilE);
+            cc.log("2");
+        }
         
-        var action = cc.moveTo(0.5, cc.p(size.width+25, this.y));
+        
+        var action = cc.moveTo(0.5, cc.p((this.bool+1400), this.y));
         this.runAction(action);
         
         this.scheduleUpdate();
     },
     update:function(dt){
-        if (this.x>size.width+22){
+        if (this.x>size.width+100 || this.x< -100){
               this.remove();
         };
     },

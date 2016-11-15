@@ -10,7 +10,7 @@ var PlayerL = cc.Layer.extend({
         //////////////////////////////
         // 1. super init first
         this._super();
-        this.space=space;
+        this.space = space;
 
         /////////////////////////////
         // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -74,7 +74,9 @@ var PlayerL = cc.Layer.extend({
         cc.eventManager.addListener(shot.clone(), this.player);
         
         if(hardwin){
-            this.space.addCollisionHandler(ColType.player, ColType.block,this.collisionWithMap.bind(this), null, null, null);
+            this.space.addCollisionHandler(ColType.player, ColType.block, this.lose.bind(this), null, null, null);
+            this.space.addCollisionHandler(ColType.player, ColType.enemy, this.lose.bind(this), null, null, null);
+            this.space.addCollisionHandler(ColType.player, ColType.missilE, this.lose.bind(this), null, null, null);
         };
         if(debug){
             this._debugNode = new cc.PhysicsDebugNode(this.space);
@@ -93,7 +95,7 @@ var PlayerL = cc.Layer.extend({
             this.unscheduleUpdate();
         }  
     },
-    collisionWithMap:function(arbiter, space){
+    lose:function(arbiter, space){
         cc.director.runScene(new GameOver());
     }
 });

@@ -13,7 +13,7 @@ var Level1 = cc.Scene.extend({
         
         this.initPhysics();
         this.addChild(new BackgroundL(0), 0);
-        this.addChild(new Map(this.space),1)
+        this.addChild(new Map(this.space),1);
         this.addChild(new PlayerL(this.space), 2);
         this.scheduleUpdate();
     }
