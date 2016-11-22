@@ -7,6 +7,7 @@ var Player = cc.PhysicsSprite.extend({
         this.time=0;
         this.space = space;
         this.father=father;
+        this.scale=0.1;
         
         var contentSize = this.getContentSize();
         
@@ -15,13 +16,12 @@ var Player = cc.PhysicsSprite.extend({
         
         this.setBody(this.body);
         this.attr({
-            scale: 0.1,
             rotation:90
         });
         
-        this.shape = new cp.BoxShape(this.body, (contentSize.width*0.1)-55, (contentSize.height*0.1)-10);
+        this.shape = new cp.BoxShape(this.body, (contentSize.width*this.scale)-55, (contentSize.height*this.scale)-10);
         this.shape.setCollisionType(ColType.player);
-        this.shape1 = new cp.BoxShape(this.body, (contentSize.width*0.1), (contentSize.height*0.1)-57);
+        this.shape1 = new cp.BoxShape(this.body, (contentSize.width*this.scale), (contentSize.height*this.scale)-57);
         this.shape1.setCollisionType(ColType.player);
         this.space.addShape(this.shape);
         this.space.addShape(this.shape1);
@@ -33,7 +33,13 @@ var Player = cc.PhysicsSprite.extend({
             this.hasMis=true;  
         };
         if (this.x>size.width+80){
-            cc.director.runScene(new Level2());
+            if(level==1){
+                cc.director.runScene(new Level2());
+            }else if(level==2){
+                cc.director.runScene(new Level3());
+            }else{
+                cc.director.runScene(new Level2())
+            };
             ended=false;
         };
     },
@@ -41,7 +47,7 @@ var Player = cc.PhysicsSprite.extend({
         if (this.hasMis){
             this.time=0;
             this.hasMis=false;
-            var aux = new Missil(this.space, cc.p(this.x+10, this.y), this.father, "+", true);
+            var aux = new Missil(true, cc.p(this.x+(85*0.4)+455*this.scale, this.y), cc.p(size.width+1000, this.y), this.father, this.space);
             this.father.addChild(aux);
         }
     },

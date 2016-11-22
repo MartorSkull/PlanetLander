@@ -6,7 +6,7 @@ var EnemyL = cc.Layer.extend({
         this.scheduleUpdate();
         this.count = 0;
         this.num=0;
-        this.space.addCollisionHandler(ColType.enemy, ColType.missil, this.collision.bind(this), null, null, null);
+        this.space.addCollisionHandler(ColType.enemy, ColType.missilP, this.collision.bind(this), null, null, null);
         },
     update:function(dt){
         if (this.count == 5){

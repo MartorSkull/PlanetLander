@@ -10,6 +10,8 @@ var res = {
     basu2:"res/Basu2.png",
     basu3:"res/Basu3.png",
     torret_img:"res/triangle.png",
+    misil1_img:"res/cannonMissile0.png",
+    misil2_img:"res/cannonMissile1.png",
 };
 
 var g_resources = [];

@@ -53,13 +53,14 @@ var Enemy = cc.PhysicsSprite.extend({
                 this.y+=this.movement;
             };
         }
+        cc.log(this.life);
         ////////////////////////////////////////////////////////
-        if(emovement){    
-            if (this.count > (Math.random()*8)+0.4){
-                var misil1 = new Missil(this.space, cc.p(this.x-170, this.y+30), this.father, "-", false);
-                var misil = new Missil(this.space, cc.p(this.x-170, this.y-30), this.father, "-", false);
-                this.father.addChild(misil);
+        if(emovement){
+            if (this.count > (Math.random()*8)+0.4 && this.getNumberOfRunningActions()==0 ){
+                var misil1 = new Missil(false, cc.p(this.x-125, this.y+30), cc.p(-(size.width+400), this.y), this.father, this.space);
+                var misil2 = new Missil(false, cc.p(this.x-125, this.y-30), cc.p(-(size.width+400), this.y), this.father, this.space);
                 this.father.addChild(misil1);
+                this.father.addChild(misil2);
                 this.count =0;
             }else{
                 this.count +=dt;

@@ -11,6 +11,7 @@ var Level1 = cc.Scene.extend({
     onEnter : function () {
         this._super();
         
+        level=1;
         this.initPhysics();
         this.addChild(new BackgroundL(0), 0);
         this.addChild(new PlayerL(this.space), 1);
