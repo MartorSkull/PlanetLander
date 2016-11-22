@@ -19,7 +19,7 @@ var BackgroundL= cc.Layer.extend({
                 x: 670,
                 y: 360
             });
-            this.addChild(spriteBg);
+            this.addChild(spriteBg)
             var sprite_action1 = cc.moveTo(60, cc.p(610, 360));
             //spriteBg.runAction(sprite_action1); 
             var sprite2 = new cc.Sprite.create(res.background3_img);

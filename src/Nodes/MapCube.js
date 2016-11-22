@@ -1,11 +1,11 @@
 var Block = cc.PhysicsSprite.extend({
-    ctor:function(space, pos){
+    ctor:function(space, pos, father){
         var imgs = [res.basu1, res.basu2, res.basu3];
         var img = imgs[Math.floor(Math.random()*2)];
         
         this._super(img);
         this.scheduleUpdate();
-
+        this.father=father;
         this.ran = (Math.random()*14)-6;
 
         
@@ -44,6 +44,7 @@ var Block = cc.PhysicsSprite.extend({
         this.body.removeShape(this.shape);
         this.space.removeShape(this.shape);
         this.space.removeBody(this.body);
+        this.father.removeChild(this);
         this.release();
         this.unscheduleUpdate();
     }

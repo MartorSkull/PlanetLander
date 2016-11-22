@@ -3,7 +3,7 @@ var PlayerL = cc.Layer.extend({
         //////////////////////////////
         timecalc=function(distance){
             var maxdistance = size.height;
-            var maxtime = 1.5;
+            var maxtime = 1.2;
             var newtime = (distance*maxtime) / maxdistance
             return newtime;
         };
@@ -18,8 +18,8 @@ var PlayerL = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
         var mid = cc.p(100, size.height / 2);
-        var bot = cc.p(100, 0);
-        var top = cc.p(100, size.height);
+        var bot = cc.p(100, 37);
+        var top = cc.p(100, size.height-37);
 
     
 
@@ -29,6 +29,7 @@ var PlayerL = cc.Layer.extend({
             y: size.height / 2
         });
         this.addChild(this.player, 0);
+        gPlayer=this.player;
 
         var eventos = cc.EventListener.create({
             event: cc.EventListener.MOUSE,
@@ -54,7 +55,7 @@ var PlayerL = cc.Layer.extend({
                     if(target.getNumberOfRunningActions() != 0){
                         target.stopActionByTag("down");
                     }
-                    var action_down = cc.moveTo(1.5-(timecalc(size.height-target.y)), bot);
+                    var action_down = cc.moveTo(1.2-(timecalc(size.height-target.y)), bot);
                     action_down.setTag("up");
                     if(!ended){
                         target.runAction(action_down);
@@ -72,7 +73,6 @@ var PlayerL = cc.Layer.extend({
             }
         });
         cc.eventManager.addListener(shot.clone(), this.player);
-        
         if(hardwin){
             this.space.addCollisionHandler(ColType.player, ColType.block, this.lose.bind(this), null, null, null);
             this.space.addCollisionHandler(ColType.player, ColType.enemy, this.lose.bind(this), null, null, null);
@@ -90,12 +90,21 @@ var PlayerL = cc.Layer.extend({
         if(ended){
             this.player.stopActionByTag("up");
             this.player.stopActionByTag("down");
-            var action = new cc.MoveTo (1.5, cc.p(size.width+72, size.height/2))
+            var action = new cc.MoveTo (1.5, cc.p(size.width+81, size.height/2))
             this.player.runAction(action);
+            var win = new cc.Sprite(res.final_img);
+            win.attr({
+                x:size.width-200,
+                y:size.height/2,
+                opacity:0
+            });
+            var action = new cc.fadeIn(2);
+            this.addChild(win, 5); 
+            win.runAction(action);
             this.unscheduleUpdate();
         }  
     },
     lose:function(arbiter, space){
         cc.director.runScene(new GameOver());
-    }
+    },
 });
