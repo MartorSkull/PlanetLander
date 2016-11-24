@@ -11,10 +11,10 @@ ColType.block=1;
 ColType.missilP=2;
 ColType.enemy=3;
 ColType.missilE=4;
-ColType.end=5;
+ColType.shield=5;
 
 //debug
 var hardwin=true;
 var debug=false;    
 var winOn = true;
-var emovement = true;
+var emovement = false;

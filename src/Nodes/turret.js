@@ -14,7 +14,7 @@ var Turret = cc.Sprite.extend({
     /////////////////////////////////////////////////////////
     update:function(dt){
         this.rotation= this.getAngle();
-        if (this.count>Math.random()*11+0.2){
+        if (this.count>Math.random()*15+0.2){
             this.shoot();
             this.count=0;
         }else{
@@ -34,8 +34,10 @@ var Turret = cc.Sprite.extend({
     },
     /////////////////////////////////////////////////////////
     shoot:function(){
-        var missil = new Missil(false, cc.p(this.x, this.y), cc.p(gPlayer.x, gPlayer.y), this.father, this.space);
-        this.father.addChild(missil);
+        if(emovement){
+            var missil = new Missil(false, cc.p(this.x, this.y), cc.p(gPlayer.x, gPlayer.y), this.father, this.space);
+            this.father.addChild(missil);
+        };
     },
     //////////////////////////////////////////////////////////
 });
