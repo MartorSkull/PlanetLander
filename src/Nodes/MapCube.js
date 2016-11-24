@@ -1,6 +1,6 @@
 var Block = cc.PhysicsSprite.extend({
     ctor:function(space, pos, father){
-        var imgs = [res.basu1, res.basu2, res.basu3];
+        var imgs = [res.map1_img, res.map2_img, res.map3_img];
         var img = imgs[Math.floor(Math.random()*2)];
         
         this._super(img);

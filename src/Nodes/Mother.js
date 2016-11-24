@@ -1,6 +1,6 @@
 var Mother = cc.Sprite.extend({
     ctor:function(space, father){
-        this._super(res.cubo_img);
+        this._super(res.bossBody_img);
         this.life = 1000;
         this.father=father
         this.space = space;

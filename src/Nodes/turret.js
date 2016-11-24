@@ -1,6 +1,6 @@
 var Turret = cc.Sprite.extend({
     ctor:function(pos, space, father){
-        this._super(res.torret_img);
+        this._super(res.bossTurretOff_img);
         this.count=0;
         this.father=father;
         this.space=space;
@@ -8,13 +8,13 @@ var Turret = cc.Sprite.extend({
         this.attr({
             x:pos.x,
             y:pos.y,
-            scale:0.1
+            scale:0.4
         });
     },
     /////////////////////////////////////////////////////////
     update:function(dt){
         this.rotation= this.getAngle();
-        if (this.count>Math.random()*10+1){
+        if (this.count>Math.random()*11+0.2){
             this.shoot();
             this.count=0;
         }else{

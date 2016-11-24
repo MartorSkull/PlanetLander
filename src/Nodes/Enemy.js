@@ -1,6 +1,6 @@
 var Enemy = cc.PhysicsSprite.extend({
     ctor:function(space, pos, father){
-        this._super(res.cubo_img);
+        this._super(res.enemyBody_img);
         this.space=space;
         this.father=father;
         this.count=0;

@@ -1,6 +1,6 @@
 var Player = cc.PhysicsSprite.extend({
     ctor:function(space, father){
-        this._super(res.Nave_img);
+        this._super(res.playerBody_img);
         
         this.hasMis=false;
         this.reloadTime=1;

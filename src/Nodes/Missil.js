@@ -1,16 +1,16 @@
 var Missil = cc.PhysicsSprite.extend({
     ctor:function(ally, position, aim, father, space){
         if(ally){
-            this._super(res.misil1_img);
+            this._super(res.playerLaser_img);
         }else{
-            this._super(res.misil2_img);
+            this._super(res.enemyLaser_img);
         };
         this.ally=ally;
         this.space=space;
         this.father=father;
         this.toDel=false;
         this.aim=aim;
-        var scale = 0.4;
+        var scale = 0.38;
 
         var contentSize = this.getContentSize();
         /////////////////////////////////////
