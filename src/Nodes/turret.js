@@ -6,27 +6,31 @@ var Turret = cc.Sprite.extend({
         this.space=space;
         this.scheduleUpdate();
         this.attr({
-            x:size.width-180,
-            y:size.height/2,
+            x:pos.x,
+            y:pos.y,
             scale:0.1
         });
     },
     /////////////////////////////////////////////////////////
     update:function(dt){
+        this.rotation= this.getAngle();
+        if (this.count>Math.random()*10+1){
+            this.shoot();
+            this.count=0;
+        }else{
+            this.count+=dt;
+        };
+    },
+    /////////////////////////////////////////////////////////
+    getAngle:function(){
         var num = null;
         if(gPlayer.y>this.y){
             num = ((gPlayer.y - this.y)/(this.x-gPlayer.x));
         }else if(gPlayer.y<this.y){
             num = -((this.y - gPlayer.y)/(this.x-gPlayer.x));
         }
-        var angle= (Math.atan(num)*(180/Math.PI))+90;
-        this.rotation= angle;
-        if (this.count>1){
-            this.shoot();
-            this.count=0;
-        }else{
-            this.count+=dt;
-        };
+        var angle= (Math.atan(num)*(180/Math.PI));
+        return angle;
     },
     /////////////////////////////////////////////////////////
     shoot:function(){

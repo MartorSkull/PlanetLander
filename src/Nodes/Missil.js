@@ -6,10 +6,10 @@ var Missil = cc.PhysicsSprite.extend({
             this._super(res.misil2_img);
         };
         this.ally=ally;
-        this.aim=aim;
         this.space=space;
         this.father=father;
         this.toDel=false;
+        this.aim=aim;
         var scale = 0.4;
 
         var contentSize = this.getContentSize();
@@ -21,25 +21,26 @@ var Missil = cc.PhysicsSprite.extend({
         this.attr({
             x:position.x,
             y:position.y,
-            rotation : -90+this.cRotation(),
             scale:scale
         });
+        this.rotation=-90+this.getAngle();
         /////////////////////////////////////
         this.shape = new cp.BoxShape(this.body,contentSize.width*scale, contentSize.height*scale);
         this.space.addShape(this.shape);
         if(ally){
             this.shape.setCollisionType(ColType.missilP);
+            var movement = new cc.moveTo(1, cc.p(this.aim.x,  this.aim.y));
         }else{
             this.shape.setCollisionType(ColType.missilE);  
+            var movement = new cc.moveTo(1, this.ext());
         };
-
         /////////////////////////////////////
-        this.body.applyImpulse(cc.p(this.x, this.y), cc.p(this.aim.x, this.aim.y));
+        this.runAction(movement);
         /////////////////////////////////////
         this.scheduleUpdate();
     },
     /////////////////////////////////////////
-    cRotation:function(){
+    getAngle:function(){
         var num = null;
         if(this.aim.y>this.y){
             num = ((this.aim.y - this.y)/(this.x-this.aim.x));
@@ -48,6 +49,17 @@ var Missil = cc.PhysicsSprite.extend({
         }
         var angle= (Math.atan(num)*(180/Math.PI));
         return angle;
+    },
+    /////////////////////////////////////////
+    ext:function(){
+        var rel; 
+        if(this.aim.y>this.y){
+            rel = -((this.aim.y - this.y)/(this.x-this.aim.x));
+        }else if(this.aim.y<this.y){
+            rel = ((this.y - this.aim.y)/(this.x-this.aim.x));
+        }
+        var pos = cc.p(this.aim.x-200, this.aim.y-(200*rel));
+        return pos;
     },
     /////////////////////////////////////////
     update:function(dt){
@@ -63,7 +75,6 @@ var Missil = cc.PhysicsSprite.extend({
                 this.remove();
             };
         };
-        cc.log(this.cRotation());
     },
     /////////////////////////////////////////
     remove:function(){
