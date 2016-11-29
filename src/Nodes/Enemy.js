@@ -53,7 +53,6 @@ var Enemy = cc.PhysicsSprite.extend({
                 this.y+=this.movement;
             };
         }
-        cc.log(this.life);
         ////////////////////////////////////////////////////////
         if(emovement){
             if (this.count > (Math.random()*8)+0.4 && this.getNumberOfRunningActions()==0 ){

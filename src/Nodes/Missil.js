@@ -11,10 +11,12 @@ var Missil = cc.PhysicsSprite.extend({
         this.toDel=false;
         this.aim=aim;
         var scale = 0.38;
+        this.counter=0;
+        this.flag=true;
 
-        var contentSize = this.getContentSize();
+        this.contentSize = this.getContentSize();
         /////////////////////////////////////
-        this.body = new cp.Body(1, cp.momentForBox(1, contentSize.width, contentSize.height));
+        this.body = new cp.Body(1, cp.momentForBox(1, this.contentSize.width, this.contentSize.height));
         this.space.addBody(this.body);
         this.setBody(this.body);
         this.body.parent=this;
@@ -25,13 +27,9 @@ var Missil = cc.PhysicsSprite.extend({
         });
         this.rotation=-90+this.getAngle();
         /////////////////////////////////////
-        this.shape = new cp.BoxShape(this.body,contentSize.width*scale, contentSize.height*scale);
-        this.space.addShape(this.shape);
         if(ally){
-            this.shape.setCollisionType(ColType.missilP);
             var movement = new cc.moveTo(1, cc.p(this.aim.x,  this.aim.y));
         }else{
-            this.shape.setCollisionType(ColType.missilE);  
             var movement = new cc.moveTo(1, this.ext());
         };
         /////////////////////////////////////
@@ -66,6 +64,13 @@ var Missil = cc.PhysicsSprite.extend({
         if(this.toDel){
             this.remove();  
         };
+        if(this.flag){
+            this.counter+=dt;
+            if(this.counter>=0.1){
+                this.createShap();
+                this.flag=false;
+            }
+        }
         if(this.ally){
             if(this.x>=size.width+80){
                 this.remove();
@@ -87,5 +92,16 @@ var Missil = cc.PhysicsSprite.extend({
     },
     del:function(){
         this.toDel=true;
+    },
+    createShap:function(){
+        this.shape = new cp.BoxShape(this.body,this.contentSize.width*this.scale, this.contentSize.height*this.scale);
+        this.space.addShape(this.shape);
+        if(this.ally){
+            this.shape.setCollisionType(ColType.missilP);
+            var movement = new cc.moveTo(1, cc.p(this.aim.x,  this.aim.y));
+        }else{
+            this.shape.setCollisionType(ColType.missilE);  
+            var movement = new cc.moveTo(1, this.ext());
+        };
     }
 });

@@ -34,8 +34,8 @@ var PlayerL = cc.Layer.extend({
         var eventos = cc.EventListener.create({
             event: cc.EventListener.MOUSE,
             onMouseDown: function(event){
+                var target = event.getCurrentTarget();
                 if(event.getButton()==cc.EventMouse.BUTTON_LEFT){
-                    var target = event.getCurrentTarget();
                     //cc.log(target.y +"/" +timecalc(size.height-target.y) +"/"+size.height/2+ " down");
                     if(target.getNumberOfRunningActions() != 0){
                         target.stopActionByTag("up");
@@ -46,6 +46,9 @@ var PlayerL = cc.Layer.extend({
                     if(!ended){
                         target.runAction(action_down);
                     }
+                }
+                if(event.getButton()==cc.EventMouse.BUTTON_RIGHT){
+                    target.shoot();
                 }
             },
             onMouseUp: function(event){
@@ -65,14 +68,6 @@ var PlayerL = cc.Layer.extend({
         });
         cc.eventManager.addListener(eventos.clone(), this.player);
 
-        var shot = cc.EventListener.create({
-            event: cc.EventListener.MOUSE,
-            onMouseScroll: function(event){                
-                var target = event.getCurrentTarget();
-                target.shoot();
-            }
-        });
-        cc.eventManager.addListener(shot.clone(), this.player);
         if(hardwin){
             this.space.addCollisionHandler(ColType.player, ColType.block, this.lose.bind(this), null, null, null);
             this.space.addCollisionHandler(ColType.player, ColType.enemy, this.lose.bind(this), null, null, null);

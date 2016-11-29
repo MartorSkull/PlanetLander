@@ -1,6 +1,11 @@
 var Mother = cc.Sprite.extend({
     ctor:function(space, father){
         this._super(res.bossBody_img);
+        this.active=true;
+        this.gens=5;
+        this.cycle=10;
+        this.reactcycle=3;
+        this.counter=0;
         this.father=father;
         this.space = space;
         this.scale=0.58;
@@ -8,8 +13,30 @@ var Mother = cc.Sprite.extend({
             x: size.width-(158.5*this.scale)+1,
             y: size.height/2,
         });
-        ////////////////////////////////////////////////////
-        var action = new cc.moveTo(1.5, cc.p(size.width-200, size.height/2));
-        //this.runAction(action);
+        this.scheduleUpdate()
+    },
+    update:function(dt){
+        if(this.gens==0){
+            cc.director.runScene(new WinL());
+        };
+        if(this.active){
+            if(this.counter>=this.cycle){
+                this.active=false;
+                this.counter=0;
+            }else{
+                this.counter+=dt;
+            };
+        }else{
+            if(this.counter>=this.reactcycle){
+                this.active=true;
+                this.counter=0;
+            }else{
+                this.counter+=dt;
+            };
+        };
+    },
+    dest:function(){
+        this.active=true;
+        this.gens-=1;
     }
 });

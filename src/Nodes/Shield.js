@@ -1,10 +1,12 @@
 var Shield = cc.PhysicsSprite.extend({
-    ctor:function(space, father){
+    ctor:function(space, father, mother){
         this._super(res.bossShield_img);
         this.space=space;
         this.father=father;
+        this.mother=mother; 
+        this.active=false
         
-        var contentSize = this.getContentSize();
+        this.contentSize = this.getContentSize();
         
         this.body=new cp.Body(Infinity, Infinity);
         this.body.ajar="Shield";
@@ -19,19 +21,20 @@ var Shield = cc.PhysicsSprite.extend({
             opacity:0
         });
         
-        this.shape=new cp.BoxShape(this.body, (contentSize.width*this.scale), (contentSize.height*this.scale));
-        this.shape.setCollisionType(ColType.shield);
-        this.space.addShape(this.shape);
-        
         this.space.addCollisionHandler(ColType.shield, ColType.missilP, this.collision.bind(this), null, null, null);
+        this.space.addCollisionHandler(ColType.shield, ColType.FieldGen, this.pass.bind(this), null, null, null);
         
+        this.scheduleUpdate();
     },
     off:function(){
+        this.stopAllActions();
+        this.opacity=0;
         this.body.removeShape(this.shape);
         this.space.removeShape(this.shape);
     },
     on:function(){
-        this.shape=new cp.BoxShape(this.body, (contentSize.width*this.scale), (contentSize.height*this.scale));
+        
+        this.shape=new cp.BoxShape(this.body, (this.contentSize.width*this.scale), (this.contentSize.height*this.scale));
         this.shape.setCollisionType(ColType.shield);
         this.space.addShape(this.shape);
     },
@@ -48,9 +51,19 @@ var Shield = cc.PhysicsSprite.extend({
             var dis = cc.fadeTo(2,0);
             arbiter.body_b.father.runAction(dis);
             arbiter.body_a.parent.del();
-        };    
+        };
     },
     update:function(dt){
-        
+        if(this.mother.active!=this.active){
+            this.active=this.mother.active;
+            if(this.mother.active){
+                this.on();
+            }else{
+                this.off();
+            };
+        };
+    },
+    pass:function(arbiter, space){
+        var ar=arbiter;
     },
 });

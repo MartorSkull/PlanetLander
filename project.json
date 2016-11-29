@@ -32,12 +32,13 @@
         "src/Nodes/win.js",
         "src/Nodes/turret.js",
         "src/Nodes/Shield.js",
+        "src/Nodes/FieldGen.js",
         
-        "src/Scenes/Cinematic1.js",
         "src/Scenes/Level1.js",
         "src/Scenes/Menu.js",
         "src/Scenes/Level2.js",
         "src/Scenes/Level3.js",
-        "src/Scenes/GameOver.js"
+        "src/Scenes/GameOver.js",
+        "src/Scenes/Win.js"
     ]
 }
