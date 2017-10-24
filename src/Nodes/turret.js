@@ -30,7 +30,6 @@ var Turret = cc.Sprite.extend({
         if(this.active!=this.mother.active){
             this.active=this.mother.active;
             if (this.mother.active){
-                cc.log("10");
                 this.on();
             };
         };

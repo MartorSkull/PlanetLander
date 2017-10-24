@@ -31,8 +31,7 @@ var FieldGen=cc.PhysicsSprite.extend({
         });
         this.father.addChild(this.energy, 2);
         this.scheduleUpdate();
-        
-                this.space.addCollisionHandler(ColType.FieldGen, ColType.missilP, this.collision.bind(this), null, null, null);
+        this.space.addCollisionHandler(ColType.FieldGen, ColType.missilP, this.collision.bind(this), null, null, null);
         
     },
     update:function(dt){

@@ -2,12 +2,12 @@ var Player = cc.PhysicsSprite.extend({
     ctor:function(space, father){
         this._super(res.playerBody_img);
         
-        this.hasMis=false;
-        this.reloadTime=1;
-        this.time=0;
+        this.hasMis = false;
+        this.reloadTime = 1;
+        this.time = 0;
         this.space = space;
-        this.father=father;
-        this.scale=0.1;
+        this.father = father;
+        this.scale = 0.1;
         
         var contentSize = this.getContentSize();
         
@@ -25,6 +25,11 @@ var Player = cc.PhysicsSprite.extend({
         this.shape1.setCollisionType(ColType.player);
         this.space.addShape(this.shape);
         this.space.addShape(this.shape1);
+
+        //this.shield = new PlayerShield(this.space, this);
+        //this.addChild(this.shield)
+
+
         this.scheduleUpdate();
     },
     update:function(dt){

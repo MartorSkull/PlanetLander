@@ -3,47 +3,40 @@ var Map = cc.Layer.extend({
         this._super();
         this.space = space;
         this.count = 0;
-        this.aux = 0;
-        this.aux1 = 119;
-        this.max=50;
-        this.num=0;
-        function randmap(){
+        this.time = 0;
+        this.rocks = 60;
+        this.attackspeed = 0.3;
+
+        function randarray(quan, maxv, minv){
             var arr = [];
-            for(i=0; i<120; i++){  
-                arr.push(Math.floor(Math.random() * 648) + 72);
+            for(i=0; i<quan+1; i++){  
+                arr.push(Math.floor(Math.random() * maxv) + minv);
             };
             return arr;
         };
-        this.array = randmap();
-        this.array1 = randmap();
+        this.array = randarray(this.rocks, 648, 72);
+        this.velocity = randarray(this.rocks, 3, 2)
         this.scheduleUpdate();
 
         
         
     },
     update:function(dt){
-        var velocidad = 4;
-        if(this.num<=this.max){
-            if(this.count>=0.5){
-                var x = Math.floor(Math.random()*2);
-                if (x==0){
-                    var nBlock = new Block(this.space, cc.p(1280, this.array[this.aux]), this);
-                    this.addChild(nBlock);
-                    this.aux+=1;
-                }else{
-                    var nBlock1 = new Block(this.space, cc.p(1280, this.array[this.aux1]), this);
-                    this.addChild(nBlock1);
-                    this.aux1-=1;
-                }
-                this.count=0;
-                this.num+=1;
+        if (this.rocks>=this.count){
+            if(this.time>=this.attackspeed){
+                var nBlock = new Block(this.space, cc.p(size.width+75, this.array[this.count]), this, this.velocity[this.count]);
+                this.addChild(nBlock);
+                this.count+=1;
+                this.time-=this.attackspeed;
             }else{
-                this.count+=dt;
-            };
+                this.time+=dt;
+            }
+
+
         }else{
             if(winOn && this.childrenCount==0){
-                ended=true;
-            };
+                ended = true
+            }
         }
     }
     

@@ -17,7 +17,7 @@ var Mother = cc.Sprite.extend({
     },
     update:function(dt){
         if(this.gens==0){
-            cc.director.runScene(new WinL());
+            cc.director.runScene(new winS());
         };
         if(this.active){
             if(this.counter>=this.cycle){

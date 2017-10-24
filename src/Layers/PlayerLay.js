@@ -21,7 +21,7 @@ var PlayerL = cc.Layer.extend({
         var bot = cc.p(100, 37);
         var top = cc.p(100, size.height-37);
 
-    
+
 
         this.player = new Player(this.space, this);
         this.player.attr({
@@ -100,6 +100,6 @@ var PlayerL = cc.Layer.extend({
         }  
     },
     lose:function(arbiter, space){
-        cc.director.runScene(new GameOver());
+        cc.director.runScene(new Menu(2));
     },
 });

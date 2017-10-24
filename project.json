@@ -32,6 +32,7 @@
         "src/Nodes/win.js",
         "src/Nodes/turret.js",
         "src/Nodes/Shield.js",
+        "src/Nodes/PlShield.js",
         "src/Nodes/FieldGen.js",
         
         "src/Scenes/Level1.js",

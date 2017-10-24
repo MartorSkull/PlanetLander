@@ -20,7 +20,8 @@ var res = {
     
     playerLaser_img: "res/Player/LaserP.png",
     playerNeons_img: "res/Player/Neones.png",
-    playerBody_img: "res/Player/Player.png"
+    playerBody_img: "res/Player/Player.png",
+    playerShield_img: "res/Player/escudinio.jpg",
 };
 
 var g_resources = [];
